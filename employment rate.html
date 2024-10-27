@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File 2 - Capital and Consumption Model</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* General styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #F5F5F5;
+            color: #333;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center; /* Center horizontally */
+        }
+        .container {
+            width: 960px; /* Set container width */
+            background-color: #FFFFFF;
+            border: 1px solid #DDDDDD;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin-top: 20px; /* Space from the top */
+        }
+
+        /* Topbar with Jupyter logo */
+        .topbar {
+            background-color: #FAFAFA;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #E0E0E0;
+        }
+        .topbar img {
+            height: 20px;
+            margin-right: 10px;
+        }
+        .checkpoint {
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        /* Menu bar styling */
+        .menu-bar {
+            background-color: #FAFAFA;
+            padding: 5px 15px;
+            border-bottom: 1px solid #E0E0E0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .menu-bar span, .menu-bar i {
+            font-size: 0.9em;
+            color: #333;
+            cursor: pointer;
+            margin-right: 15px;
+        }
+
+        /* Toolbar icons */
+        .toolbar {
+            background-color: #FAFAFA;
+            padding: 5px 15px;
+            border-bottom: 1px solid #E0E0E0;
+            display: flex;
+            gap: 15px;
+        }
+        .toolbar i {
+            color: #333;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        /* Code cell styling */
+        .code-cell {
+            display: flex;
+            align-items: flex-start;
+            padding: 15px;
+            border-top: 1px solid #E0E0E0;
+            background-color: #F7F7F7;
+        }
+        .code-label {
+            color: #333;
+            font-weight: bold;
+            margin-right: 10px;
+            font-size: 0.9em;
+        }
+        .code-content {
+            font-family: monospace;
+            white-space: pre-wrap;
+            color: #333;
+        }
+
+        /* Output cell styling */
+        .output-cell {
+            padding: 15px;
+            background-color: #FFFFFF;
+            font-family: monospace;
+            color: #333;
+            font-size: 1em;
+            border-top: 1px solid #E0E0E0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Topbar with Jupyter logo and checkpoint -->
+    <div class="topbar">
+        <div class="left-section">
+            <img src="https://jupyter.org/assets/homepage/main-logo.svg" alt="Jupyter Logo">
+            <span>capital and consumption model</span>
+        </div>
+        <div class="checkpoint">Last Checkpoint: 2 hours ago (autosaved)</div>
+    </div>
+
+    <!-- Menu bar with file options -->
+    <div class="menu-bar">
+        <span>File</span>
+        <span>Edit</span>
+        <span>View</span>
+        <span>Insert</span>
+        <span>Cell</span>
+        <span>Kernel</span>
+        <span>Widgets</span>
+        <span>Help</span>
+    </div>
+
+    <!-- Toolbar with action icons -->
+    <div class="toolbar">
+        <i class="fas fa-cut"></i>
+        <i class="fas fa-copy"></i>
+        <i class="fas fa-paste"></i>
+        <i class="fas fa-undo"></i>
+        <i class="fas fa-redo"></i>
+        <span>Code ▼</span>
+    </div>
+
+    <!-- Code cell structure -->
+    <div class="code-cell">
+        <div class="code-label">In [2]:</div>
+        <div class="code-content">
+<pre>
+# Q2
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Parameters
+alpha = 0.3       # Output elasticity of capital
+beta = 0.96       # Discount factor
+delta = 0.1       # Depreciation rate
+T = 50            # Time periods
+K0 = 1            # Initial capital
+C0 = 0.5          # Initial consumption
+
+# Arrays to store capital and consumption over time
+K = np.zeros(T)
+C = np.zeros(T)
+K[0] = K0
+C[0] = C0
+
+# Simulation of the model
+for t in range(1, T):
+    Y = K[t-1]**alpha  # Output from capital
+    C[t] = beta * (Y + (1 - delta) * K[t-1])  # Consumption based on utility maximization
+    K[t] = (1 - delta) * K[t-1] + (Y - C[t])  # Capital accumulation
+
+# Plotting results
+plt.figure(figsize=(10, 5))
+plt.plot(K, label='Capital Stock (K)', color='blue')
+plt.plot(C, label='Consumption (C)', color='orange')
+plt.title('Capital and Consumption Over Time')
+plt.xlabel('Time')
+plt.ylabel('Value')
+plt.legend()
+plt.grid()
+plt.show()
+</pre>
+        </div>
+    </div>
+
+    <!-- Output cell with calculation result -->
+    <div class="output-cell">
+        Output: Plot showing Capital and Consumption over Time
+    </div>
+</div>
+
+</body>
+</html>

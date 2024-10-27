@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File 6 - Cattle Cycle Model</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* General styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #F5F5F5;
+            color: #333;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center; /* Center horizontally */
+        }
+        .container {
+            width: 960px; /* Set container width */
+            background-color: #FFFFFF;
+            border: 1px solid #DDDDDD;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin-top: 20px; /* Space from the top */
+        }
+
+        /* Topbar with Jupyter logo */
+        .topbar {
+            background-color: #FAFAFA;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #E0E0E0;
+        }
+        .topbar img {
+            height: 20px;
+            margin-right: 10px;
+        }
+        .checkpoint {
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        /* Menu bar styling */
+        .menu-bar {
+            background-color: #FAFAFA;
+            padding: 5px 15px;
+            border-bottom: 1px solid #E0E0E0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .menu-bar span, .menu-bar i {
+            font-size: 0.9em;
+            color: #333;
+            cursor: pointer;
+            margin-right: 15px;
+        }
+
+        /* Toolbar icons */
+        .toolbar {
+            background-color: #FAFAFA;
+            padding: 5px 15px;
+            border-bottom: 1px solid #E0E0E0;
+            display: flex;
+            gap: 15px;
+        }
+        .toolbar i {
+            color: #333;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        /* Code cell styling */
+        .code-cell {
+            display: flex;
+            align-items: flex-start;
+            padding: 15px;
+            border-top: 1px solid #E0E0E0;
+            background-color: #F7F7F7;
+        }
+        .code-label {
+            color: #333;
+            font-weight: bold;
+            margin-right: 10px;
+            font-size: 0.9em;
+        }
+        .code-content {
+            font-family: monospace;
+            white-space: pre-wrap;
+            color: #333;
+        }
+
+        /* Output cell styling */
+        .output-cell {
+            padding: 15px;
+            background-color: #FFFFFF;
+            font-family: monospace;
+            color: #333;
+            font-size: 1em;
+            border-top: 1px solid #E0E0E0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Topbar with Jupyter logo and checkpoint -->
+    <div class="topbar">
+        <div class="left-section">
+            <img src="https://jupyter.org/assets/homepage/main-logo.svg" alt="Jupyter Logo">
+            <span>cattle cycle model</span>
+        </div>
+        <div class="checkpoint">Last Checkpoint: 30 minutes ago (autosaved)</div>
+    </div>
+
+    <!-- Menu bar with file options -->
+    <div class="menu-bar">
+        <span>File</span>
+        <span>Edit</span>
+        <span>View</span>
+        <span>Insert</span>
+        <span>Cell</span>
+        <span>Kernel</span>
+        <span>Widgets</span>
+        <span>Help</span>
+    </div>
+
+    <!-- Toolbar with action icons -->
+    <div class="toolbar">
+        <i class="fas fa-cut"></i>
+        <i class="fas fa-copy"></i>
+        <i class="fas fa-paste"></i>
+        <i class="fas fa-undo"></i>
+        <i class="fas fa-redo"></i>
+        <span>Code ▼</span>
+    </div>
+
+    <!-- Code cell structure -->
+    <div class="code-cell">
+        <div class="code-label">In [6]:</div>
+        <div class="code-content">
+<pre>
+# Q6
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Parameters
+T = 50  # Time periods (years)
+initial_herd_size = 100  # Initial number of cattle
+reproduction_rate = 0.2  # 20% of the herd reproduces each year
+mortality_rate = 0.1  # 10% of the herd dies each year
+price_per_cattle = 150  # Price per unit of cattle
+
+# Initialize array to store herd size over time
+herd_size = np.zeros(T)
+herd_size[0] = initial_herd_size
+
+# Simulate cattle dynamics over time
+for t in range(1, T):
+    # Calculate new cattle born and cattle that die
+    new_cattle = herd_size[t-1] * reproduction_rate
+    deaths = herd_size[t-1] * mortality_rate
+    
+    # Update herd size
+    herd_size[t] = herd_size[t-1] + new_cattle - deaths
+
+# Plotting the results
+plt.figure(figsize=(12, 6))
+plt.plot(herd_size, label='Cattle Herd Size', color='green')
+plt.title('Cattle Cycle Model')
+plt.xlabel('Time Periods (Years)')
+plt.ylabel('Number of Cattle')
+plt.legend()
+plt.grid()
+plt.axhline(y=initial_herd_size, color='grey', linestyle='--', label='Initial Herd Size')
+plt.show()
+</pre>
+        </div>
+    </div>
+
+    <!-- Output cell with calculation result -->
+    <div class="output-cell">
+        Output: Plot showing Cattle Herd Size over Time in Cattle Cycle Model
+    </div>
+</div>
+
+</body>
+</html>

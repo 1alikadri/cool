@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File 5 - Employment and Unemployment Lake Model</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* General styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #F5F5F5;
+            color: #333;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center; /* Center horizontally */
+        }
+        .container {
+            width: 960px; /* Set container width */
+            background-color: #FFFFFF;
+            border: 1px solid #DDDDDD;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin-top: 20px; /* Space from the top */
+        }
+
+        /* Topbar with Jupyter logo */
+        .topbar {
+            background-color: #FAFAFA;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #E0E0E0;
+        }
+        .topbar img {
+            height: 20px;
+            margin-right: 10px;
+        }
+        .checkpoint {
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        /* Menu bar styling */
+        .menu-bar {
+            background-color: #FAFAFA;
+            padding: 5px 15px;
+            border-bottom: 1px solid #E0E0E0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .menu-bar span, .menu-bar i {
+            font-size: 0.9em;
+            color: #333;
+            cursor: pointer;
+            margin-right: 15px;
+        }
+
+        /* Toolbar icons */
+        .toolbar {
+            background-color: #FAFAFA;
+            padding: 5px 15px;
+            border-bottom: 1px solid #E0E0E0;
+            display: flex;
+            gap: 15px;
+        }
+        .toolbar i {
+            color: #333;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        /* Code cell styling */
+        .code-cell {
+            display: flex;
+            align-items: flex-start;
+            padding: 15px;
+            border-top: 1px solid #E0E0E0;
+            background-color: #F7F7F7;
+        }
+        .code-label {
+            color: #333;
+            font-weight: bold;
+            margin-right: 10px;
+            font-size: 0.9em;
+        }
+        .code-content {
+            font-family: monospace;
+            white-space: pre-wrap;
+            color: #333;
+        }
+
+        /* Output cell styling */
+        .output-cell {
+            padding: 15px;
+            background-color: #FFFFFF;
+            font-family: monospace;
+            color: #333;
+            font-size: 1em;
+            border-top: 1px solid #E0E0E0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Topbar with Jupyter logo and checkpoint -->
+    <div class="topbar">
+        <div class="left-section">
+            <img src="https://jupyter.org/assets/homepage/main-logo.svg" alt="Jupyter Logo">
+            <span>employment and unemployment lake model</span>
+        </div>
+        <div class="checkpoint">Last Checkpoint: 45 minutes ago (autosaved)</div>
+    </div>
+
+    <!-- Menu bar with file options -->
+    <div class="menu-bar">
+        <span>File</span>
+        <span>Edit</span>
+        <span>View</span>
+        <span>Insert</span>
+        <span>Cell</span>
+        <span>Kernel</span>
+        <span>Widgets</span>
+        <span>Help</span>
+    </div>
+
+    <!-- Toolbar with action icons -->
+    <div class="toolbar">
+        <i class="fas fa-cut"></i>
+        <i class="fas fa-copy"></i>
+        <i class="fas fa-paste"></i>
+        <i class="fas fa-undo"></i>
+        <i class="fas fa-redo"></i>
+        <span>Code ▼</span>
+    </div>
+
+    <!-- Code cell structure -->
+    <div class="code-cell">
+        <div class="code-label">In [5]:</div>
+        <div class="code-content">
+<pre>
+# Q5
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Parameters
+T = 100  # Time periods
+initial_employment = 50  # Initial number of employed individuals
+job_creation_rate = 2  # New jobs created per time period
+job_destruction_rate = 1  # Jobs lost per time period
+
+# Initialize arrays to store employment and unemployment
+employment = np.zeros(T)
+unemployment = np.zeros(T)
+
+# Set initial employment
+employment[0] = initial_employment
+unemployment[0] = 100 - initial_employment  # Total labor force is 100
+
+# Simulate employment dynamics
+for t in range(1, T):
+    # Calculate new employment based on job creation and destruction
+    new_jobs = job_creation_rate
+    lost_jobs = job_destruction_rate
+    
+    # Update employment and unemployment
+    employment[t] = employment[t-1] + new_jobs - lost_jobs
+    unemployment[t] = 100 - employment[t]  # Assuming total labor force remains constant
+
+# Plotting the results
+plt.figure(figsize=(12, 6))
+plt.plot(employment, label='Employment Level', color='blue')
+plt.plot(unemployment, label='Unemployment Level', color='orange')
+plt.title('Lake Model of Employment and Unemployment')
+plt.xlabel('Time Periods')
+plt.ylabel('Number of Individuals')
+plt.legend()
+plt.grid()
+plt.axhline(y=100, color='grey', linestyle='--', label='Total Labor Force')
+plt.show()
+</pre>
+        </div>
+    </div>
+
+    <!-- Output cell with calculation result -->
+    <div class="output-cell">
+        Output: Plot showing Employment and Unemployment Levels over Time in Lake Model
+    </div>
+</div>
+
+</body>
+</html>

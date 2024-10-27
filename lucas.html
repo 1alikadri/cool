@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File 8 - Lucas Asset Pricing Model</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* General styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #F5F5F5;
+            color: #333;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center; /* Center horizontally */
+        }
+        .container {
+            width: 960px; /* Set container width */
+            background-color: #FFFFFF;
+            border: 1px solid #DDDDDD;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin-top: 20px; /* Space from the top */
+        }
+
+        /* Topbar with Jupyter logo */
+        .topbar {
+            background-color: #FAFAFA;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #E0E0E0;
+        }
+        .topbar img {
+            height: 20px;
+            margin-right: 10px;
+        }
+        .checkpoint {
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        /* Menu bar styling */
+        .menu-bar {
+            background-color: #FAFAFA;
+            padding: 5px 15px;
+            border-bottom: 1px solid #E0E0E0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .menu-bar span, .menu-bar i {
+            font-size: 0.9em;
+            color: #333;
+            cursor: pointer;
+            margin-right: 15px;
+        }
+
+        /* Toolbar icons */
+        .toolbar {
+            background-color: #FAFAFA;
+            padding: 5px 15px;
+            border-bottom: 1px solid #E0E0E0;
+            display: flex;
+            gap: 15px;
+        }
+        .toolbar i {
+            color: #333;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        /* Code cell styling */
+        .code-cell {
+            display: flex;
+            align-items: flex-start;
+            padding: 15px;
+            border-top: 1px solid #E0E0E0;
+            background-color: #F7F7F7;
+        }
+        .code-label {
+            color: #333;
+            font-weight: bold;
+            margin-right: 10px;
+            font-size: 0.9em;
+        }
+        .code-content {
+            font-family: monospace;
+            white-space: pre-wrap;
+            color: #333;
+        }
+
+        /* Output cell styling */
+        .output-cell {
+            padding: 15px;
+            background-color: #FFFFFF;
+            font-family: monospace;
+            color: #333;
+            font-size: 1em;
+            border-top: 1px solid #E0E0E0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Topbar with Jupyter logo and checkpoint -->
+    <div class="topbar">
+        <div class="left-section">
+            <img src="https://jupyter.org/assets/homepage/main-logo.svg" alt="Jupyter Logo">
+            <span>lucas asset pricing model</span>
+        </div>
+        <div class="checkpoint">Last Checkpoint: 10 minutes ago (autosaved)</div>
+    </div>
+
+    <!-- Menu bar with file options -->
+    <div class="menu-bar">
+        <span>File</span>
+        <span>Edit</span>
+        <span>View</span>
+        <span>Insert</span>
+        <span>Cell</span>
+        <span>Kernel</span>
+        <span>Widgets</span>
+        <span>Help</span>
+    </div>
+
+    <!-- Toolbar with action icons -->
+    <div class="toolbar">
+        <i class="fas fa-cut"></i>
+        <i class="fas fa-copy"></i>
+        <i class="fas fa-paste"></i>
+        <i class="fas fa-undo"></i>
+        <i class="fas fa-redo"></i>
+        <span>Code ▼</span>
+    </div>
+
+    <!-- Code cell structure -->
+    <div class="code-cell">
+        <div class="code-label">In [8]:</div>
+        <div class="code-content">
+<pre>
+# Q8
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Parameters
+T = 50  # Time periods
+initial_wealth = 1000  # Initial wealth of the agent
+risk_aversion = 2.0  # Risk aversion coefficient
+asset_payoffs = np.random.normal(loc=1.0, scale=0.5, size=T)  # Simulated asset payoffs
+
+# Initialize arrays to store wealth and asset prices
+wealth = np.zeros(T)
+asset_prices = np.zeros(T)
+wealth[0] = initial_wealth
+
+# Simulate the model over time
+for t in range(1, T):
+    # Calculate expected utility from asset payoffs
+    expected_payoff = np.mean(asset_payoffs[:t])  # Average payoff until time t
+    # Update wealth based on previous wealth and expected payoff
+    wealth[t] = wealth[t-1] * (1 + expected_payoff / (1 + risk_aversion))
+    # Calculate asset price based on wealth and risk aversion
+    asset_prices[t] = wealth[t] / (1 + risk_aversion)
+
+# Plotting the results
+plt.figure(figsize=(12, 6))
+plt.plot(wealth, label='Wealth Over Time', color='blue')
+plt.plot(asset_prices, label='Asset Prices Over Time', color='green')
+plt.title('Lucas Asset Pricing Model')
+plt.xlabel('Time Periods')
+plt.ylabel('Value')
+plt.legend()
+plt.grid()
+plt.axhline(y=initial_wealth, color='grey', linestyle='--', label='Initial Wealth')
+plt.show()
+</pre>
+        </div>
+    </div>
+
+    <!-- Output cell with calculation result -->
+    <div class="output-cell">
+        Output: Plot showing Wealth and Asset Prices Over Time in Lucas Asset Pricing Model
+    </div>
+</div>
+
+</body>
+</html>
