@@ -131,16 +131,15 @@
         }
 
         /* Modal Styling */
-        .modal {
-            display: none;
+            .modal {
+            display: none; /* Ensure modal is hidden initially */
             position: fixed;
             z-index: 1000;
             left: 0;
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.5); /* Overlay background */
-            display: flex;
+            background-color: rgba(0, 0, 0, 0.5);
             align-items: center;
             justify-content: center;
         }
@@ -219,7 +218,8 @@
                      <tr>
                     <td class="file-name">
                         <i class="fas fa-folder"></i>
-                        <span onclick="openDesktopModal()" style="color: #296eaa; cursor: pointer;">Desktop</span>
+                       <span onclick="openDesktopModal()" style="color: #296eaa; cursor: pointer;">Desktop</span> 
+
                     </td>
                     <td>2 minutes ago</td>
                     <td></td>
@@ -400,17 +400,21 @@
         </table>
 </div>
 
-     <div id="desktopModal" class="modal">
+<div id="desktopModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
                 <h2>Desktop Folder</h2>
                 <span class="close-btn" onclick="closeDesktopModal()">&times;</span>
             </div>
             <ul class="desktop-files">
-                <li><i class="fas fa-file-code"></i> <a href="https://github.com/1alikadri/cool/blob/main/Untitled1.ipynb" target="_blank">Untitled-1.cpp</a></li>
-                <li><i class="fas fa-file-code"></i> <a href="https://github.com/1alikadri/cool/blob/main/Untitled2.ipynb" target="_blank">Untitled-2.cpp</a></li>
-                <li><i class="fas fa-file-alt"></i> <a href="https://github.com/1alikadri/cool/blob/main/Untitled3.ipynb" target="_blank">Untitled.ipynb</a></li>
-                <li><i class="fas fa-file-alt"></i> <a href="https://github.com/1alikadri/cool/blob/main/Untitled4.ipynb" target="_blank">Untitled5.ipynb</a></li>
+                <li><i class="fas fa-file-code"></i> <a href="capital consumption.html" target="_blank">capital consumption</a></li>
+                <li><i class="fas fa-file-code"></i> <a href="cattle cycle.html" target="_blank">cattle cycle</a></li>
+                <li><i class="fas fa-file-alt"></i> <a href="complete-incomp market.html" target="_blank">complete-incomp market</a></li>
+                <li><i class="fas fa-file-alt"></i> <a href="emp_unemp level.html" target="_blank">emp_unemp level</a></li>
+                <li><i class="fas fa-file-alt"></i> <a href="employment rate.html" target="_blank">employment rate</a></li>
+                <li><i class="fas fa-file-code"></i> <a href="lucas.html" target="_blank">lucas</a></li>
+                <li><i class="fas fa-file-alt"></i> <a href="neumann.html" target="_blank">neumann</a></li>
+<li><i class="fas fa-file-alt"></i> <a href="present value.html" target="_blank">present value</a></li>
             </ul>
         </div>
     </div>
