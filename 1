@@ -1,0 +1,14 @@
+# Q1
+
+def present_value(a, r, n):
+    """Calculate the present value of a series of cash flows."""
+    return a * (1 - r**n) / (1 - r)
+
+# Example usage:
+annual_payout = 100  # annual cash flow
+interest_rate = 0.05  # interest rate
+years = 10  # number of years
+
+# Calculate present value
+pv = present_value(annual_payout, interest_rate, years)
+print("Present Value:", pv)
